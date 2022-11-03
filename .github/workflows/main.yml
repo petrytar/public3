@@ -15,21 +15,7 @@ jobs:
 #            /repos/petrytar/public2/pulls/${PR_NUMBER}`
 #          echo "::set-output name=packageJson::$content"
           run: |
-            desc='Summary: ARCHE-1334 Reticulating splines\n
-----\n
-\n
-Description goes here and will be part of commit message (including the change log below)\n
-\n
-\n
-# Change Log\n
-\n
-Component: RFL/P/Timing/...\n
-\n
-* Added: kljasdlfkj asdlfkj aslkdjf\n
-* Removed: adlkasdflkjasdf\n
-* Fixed:\n
-* Security:\n
-* Deprecated:'
+            desc='Summary: ARCHE-1334 Reticulating splines\n----\n\nDescription goes here and will be part of commit message (including the change log below)\n\n\n# Change Log\n\nComponent: RFL/P/Timing/...\n\n* Added: kljasdlfkj asdlfkj aslkdjf\n* Removed: adlkasdflkjasdf\n* Fixed:\n* Security:\n*Deprecated:'
             echo -e "::set-output name=packageJson::$desc"
       # To use this repository's private action,
       # you must check out the repository
