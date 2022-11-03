@@ -1,13 +1,12 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Check description'
+description: 'Description should fulfill proper format'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  desc:  # id of input
+    description: 'Description to parse'
     required: true
-    default: 'World'
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  result: # id of output
+    description: 'Description format is'
 runs:
   using: 'node16'
   main: 'dist/index.js'
