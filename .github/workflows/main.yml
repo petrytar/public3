@@ -5,15 +5,32 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
-      - id: set_var
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ github.event.number }}
-        run: |
-          content=`gh api \
-            -H "Accept: application/vnd.github+json" \
-            /repos/petrytar/public2/pulls/${PR_NUMBER}`
-          echo "::set-output name=packageJson::$content"
+#      - id: set_var
+#        env:
+#          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          PR_NUMBER: ${{ github.event.number }}
+#        run: |
+#          content=`gh api \
+#            -H "Accept: application/vnd.github+json" \
+#            /repos/petrytar/public2/pulls/${PR_NUMBER}`
+#          echo "::set-output name=packageJson::$content"
+          run: |
+            desc='Summary: ARCHE-1334 Reticulating splines\n
+----\n
+\n
+Description goes here and will be part of commit message (including the change log below)\n
+\n
+\n
+# Change Log\n
+\n
+Component: RFL/P/Timing/...\n
+\n
+* Added: kljasdlfkj asdlfkj aslkdjf\n
+* Removed: adlkasdflkjasdf\n
+* Fixed:\n
+* Security:\n
+* Deprecated:'
+            echo -e "::set-output name=packageJson::$desc"
       # To use this repository's private action,
       # you must check out the repository
       - name: Checkout
@@ -22,7 +39,7 @@ jobs:
         uses: ./ # Uses an action in the root directory
         id: hello
         with:
-          desc: ${{fromJson(steps.set_var.outputs.packageJson).body}}
+          desc: ${{fromJson(steps.set_var.outputs.packageJson)}}
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
