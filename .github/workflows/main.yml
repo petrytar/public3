@@ -16,7 +16,7 @@ jobs:
 #          echo "::set-output name=packageJson::$desc"
         run: |
             desc='Summary: ARCHE-1334 Reticulating splines\n----\n\nDescription goes here and will be part of commit message (including the change log below)\n\n\n# Change Log\n\nComponent: RFL/P/Timing/...\n\n* Added: kljasdlfkj asdlfkj aslkdjf\n* Removed: adlkasdflkjasdf\n* Fixed:\n* Security:\n*Deprecated:'
-            echo -e "::set-output name=packageJson::$desc"
+            echo "::set-output name=packageJson::$desc"
       - name: Checkout
         uses: actions/checkout@v3
       - name: Check description
