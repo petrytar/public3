@@ -10,10 +10,10 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.number }}
       #  run: |
-#          content=`gh api \
+#          desc=`gh api \
 #            -H "Accept: application/vnd.github+json" \
 #            /repos/petrytar/public2/pulls/${PR_NUMBER}`
-#          echo "::set-output name=packageJson::$content"
+#          echo "::set-output name=packageJson::$desc"
         run: |
             desc='Summary: ARCHE-1334 Reticulating splines\n----\n\nDescription goes here and will be part of commit message (including the change log below)\n\n\n# Change Log\n\nComponent: RFL/P/Timing/...\n\n* Added: kljasdlfkj asdlfkj aslkdjf\n* Removed: adlkasdflkjasdf\n* Fixed:\n* Security:\n*Deprecated:'
             echo -e "::set-output name=packageJson::$desc"
@@ -23,6 +23,6 @@ jobs:
         uses: ./ # Uses an action in the root directory
         id: check_desc
         with:
-          desc: ${{fromJson(steps.set_var.outputs.packageJson)}}
+          desc: ${{steps.set_var.outputs.packageJson}}
       - name: Get the output time
         run: echo "Description format is ${{ steps.check_desc.outputs.result }}"
