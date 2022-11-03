@@ -5,6 +5,15 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
+      - id: set_var
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.number }}
+        run: |
+          content=`gh api \
+            -H "Accept: application/vnd.github+json" \
+            /repos/petrytar/public2/pulls/${PR_NUMBER}`
+          echo "::set-output name=packageJson::$content"
       # To use this repository's private action,
       # you must check out the repository
       - name: Checkout
@@ -13,7 +22,7 @@ jobs:
         uses: ./ # Uses an action in the root directory
         id: hello
         with:
-          who-to-greet: 'Mona the Octocat'
+          desc: ${{fromJson(steps.set_var.outputs.packageJson).body}}
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
