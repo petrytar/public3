@@ -3,7 +3,7 @@ on: [push]
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: A job to check PR description
     steps:
       - id: set_var
         env:
@@ -24,5 +24,5 @@ jobs:
         id: check_desc
         with:
           desc: ${{steps.set_var.outputs.packageJson}}
-      - name: Get the output time
+      - name: Get the result
         run: echo "Description format is ${{ steps.check_desc.outputs.result }}"
