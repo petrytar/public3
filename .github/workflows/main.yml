@@ -9,7 +9,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - id: set_var
+      - name: Set input
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.number }}
@@ -19,14 +19,13 @@ jobs:
 #            /repos/petrytar/public2/pulls/${PR_NUMBER}`
 #          echo "::set-output name=input::$desc"
         run: |
-           log=`git log`
            echo ${log}
-           echo "::set-output name=input::${log}"
+           echo "input=${log}" >> $GITHUB_OUTPUT
       - name: Check description
         uses: ./ # Uses an action in the root directory
         id: check_desc
         with:
-          input: `git log`
+          input: ${{steps.outputs.input}}
           update-changelog: false
       - name: Get the result
         run: echo "Description format is ${{ steps.check_desc.outputs.result }}"
