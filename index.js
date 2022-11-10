@@ -152,6 +152,10 @@ const createDescObj = (input, changelogIndx) => {
   }
 }
 
+const updateChangelogFile = input => {
+
+}
+
 try {
     let input = core.getInput('input')
     const updateChangelog = core.getInput('update-changelog')
@@ -172,7 +176,7 @@ try {
     }
 
     if (updateChangelog) {
-      updateChangelog(descs)
+      updateChangelogFile(descs)
     }
     core.setOutput('result', 'true')
 } catch (error) {
