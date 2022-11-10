@@ -2980,19 +2980,22 @@ try {
     const updateChangelog = core.getInput('update-changelog')
 
     input = cleanUpInput(input)
-    console.log('Receive ' + input)
+    console.log('Received ' + input)
     let changelogIndx = {
       start: 0,
       end: 0
     }
     let descs = []
     const inputLength = input.length;
+    console.log('inputLength ' + inputLength)
     
     //while (changelogIndx.start < inputLength) {
       changelogIndx = getChangelogIndx(input, changelogIndx)
       //descObj = createDescObj(input, changelogIndx)
       //descs.push(descObj)
       //changelogIndx.start = changelogIndx.end + 1
+      console.log('changelogIndx ' + changelogIndx)
+
     //}
 
     if (updateChangelog) {
