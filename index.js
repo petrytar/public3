@@ -174,8 +174,11 @@ try {
     let descs = []
     const inputLength = input.length;
     
-    while (changelogIndx.start < inputLength && changelogIndx.end !== -1) {
+    while (changelogIndx.start < inputLength) {
       changelogIndx = getChangelogIndx(input, changelogIndx)
+      if (changelogIndx.end === -1) {
+        break
+      }
       console.log(changelogIndx.start + " " + changelogIndx.end)
       descObj = createDescObj(input, changelogIndx)
       descs.push(descObj)
