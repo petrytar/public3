@@ -2878,6 +2878,8 @@ const cleanUpInput = input => {
 }
 
 function checkRequiredFields(desc) {
+    console.log('desc: ' + desc)
+
     if (desc[0] !== CHANGELOG_TAG) {
         throw new Error('Missing changelog. Please see changelog doc in README.')
     }
@@ -2970,9 +2972,6 @@ const createDescObj = (input, changelogIndx) => {
   try {
     const endIndx = changelogIndx.end + 1 === input.length ? changelogIndx.end + 1 : changelogIndx.end
     const desc = input.slice(changelogIndx.start, endIndx)
-    console.log('desc: ' + desc)
-    console.log('changelogIndx.start ' + changelogIndx.start + " changelogIndx.end" + changelogIndx.end)
-
     checkRequiredFields(desc)
     return parseDescObj(desc)
   } catch(error) {
