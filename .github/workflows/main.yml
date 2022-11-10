@@ -21,7 +21,7 @@ jobs:
         run: |
           log=`git log`
           echo ${log}
-          echo "input=${log}" >> $GITHUB_OUTPUT
+          echo "input='${log}'" >> $GITHUB_OUTPUT
       - name: Check description
         uses: ./ # Uses an action in the root directory
         id: check_desc
