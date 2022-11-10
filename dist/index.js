@@ -2997,10 +2997,12 @@ try {
     if (updateChangelog) {
       updateChangelogFile(descs)
     }
-    core.setOutput('result', 'true')
+
+    console.log(descs)
+    core.setOutput('result', 'OK')
 } catch (error) {
     console.log(error.message)
-    core.setOutput('result', 'false')
+    core.setOutput('result', 'not OK')
     core.setFailed(error.message)
 }
 })();
