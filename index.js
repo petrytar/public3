@@ -94,12 +94,13 @@ const getChangelogIndx = (input, changelogIndx) => {
     if (input[i] === CHANGELOG_TAG) {
       changelogIndx.start = i
       changelogFound = true
-      continue
+      i++
     }
     if (changelogFound) {
-      if (input[i] !== COMPONENT_TAG
-        || !input[i].startsWith(HEADING_TAG_PREFIX)
-        || !input[i].startsWith(ELEMENT_TAG_PREFIX)) {
+      if ((!input[i].startsWith(COMPONENT_TAG)
+        && !input[i].startsWith(HEADING_TAG_PREFIX)
+        && !input[i].startsWith(ELEMENT_TAG_PREFIX))
+            || i + 1 === input.length) {
           changelogIndx.end = i
           break
         }
@@ -128,7 +129,7 @@ const parseDescObj = desc => {
           let headings = []
           let i = index + 1
           while(i < desc.length && desc[i].startsWith(ELEMENT_TAG_PREFIX)) {
-              headings.push(desc[i])
+              headings.push(desc[i].slice(2))
               i++
           }
           descObj[heading] = headings
@@ -140,7 +141,8 @@ const parseDescObj = desc => {
 
 const createDescObj = (input, changelogIndx) => {
   try {
-    const desc = input.slice(changelogIndx.start, changelogIndx.end + 1)
+    const endIndx = changelogIndx.end + 1 === input.length ? changelogIndx.end + 1 : changelogIndx.end
+    const desc = input.slice(changelogIndx.start, endIndx)
     checkRequiredFields(desc)
     return parseDescObj(desc)
   } catch(error) {

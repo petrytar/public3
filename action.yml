@@ -1,11 +1,14 @@
 name: 'Check description'
-description: 'Description should fulfill proper format'
+description: 'Descriptions should fulfill proper format'
 inputs:
-  desc:  # id of input
-    description: 'Description to parse'
+  input:
+    description: 'Descriptions to parse'
+    required: true
+  update-changelog:
+    description: 'True if update changelog is required'
     required: true
 outputs:
-  result: # id of output
+  result:
     description: 'Description format is'
 runs:
   using: 'node16'

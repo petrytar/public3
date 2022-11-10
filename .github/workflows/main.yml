@@ -5,6 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to check PR description
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - id: set_var
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -13,16 +15,15 @@ jobs:
 #          desc=`gh api \
 #            -H "Accept: application/vnd.github+json" \
 #            /repos/petrytar/public2/pulls/${PR_NUMBER}`
-#          echo "::set-output name=packageJson::$desc"
+#          echo "::set-output name=input::$desc"
         run: |
-            desc='Summary: ARCHE-1334 Reticulating splines\n----\n\nDescription goes here and will be part of commit message (including the change log below)\n\n\n# Change Log\n\nComponent: RFL/P/Timing/...\n\n* Added: kljasdlfkj asdlfkj aslkdjf\n* Removed: adlkasdflkjasdf\n* Fixed:\n* Security:\n*Deprecated:'
-            echo "::set-output name=packageJson::$desc"
-      - name: Checkout
-        uses: actions/checkout@v3
+           log= `git log`
+           echo "::set-output name=input::$log"
       - name: Check description
         uses: ./ # Uses an action in the root directory
         id: check_desc
         with:
-          desc: ${{steps.set_var.outputs.packageJson}}
+          input: ${{steps.set_var.outputs.input}}
+          update-changelog: false
       - name: Get the result
         run: echo "Description format is ${{ steps.check_desc.outputs.result }}"
