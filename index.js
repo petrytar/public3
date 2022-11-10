@@ -161,7 +161,7 @@ try {
       start: 0,
       end: 0
     }
-    let descs;
+    let descs = []
     const inputLength = input.length;
     
     while (changelogIndx.start < inputLength) {
