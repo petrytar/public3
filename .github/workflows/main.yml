@@ -19,7 +19,7 @@ jobs:
 #            /repos/petrytar/public2/pulls/${PR_NUMBER}`
 #          echo "::set-output name=input::$desc"
         run: |
-           log= `git log`
+           log=`git log`
            echo "::set-output name=input::$log"
       - name: Check description
         uses: ./ # Uses an action in the root directory
