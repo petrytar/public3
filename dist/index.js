@@ -2913,7 +2913,6 @@ const getChangelogIndx = (input, changelogIndx) => {
   let changelogFound = false
   for (let i = changelogIndx.start; i < input.length; i++) {
     const line = input[i].trim()
-    console.log(line)
     if (line === CHANGELOG_TAG) {
       changelogIndx.start = i
       changelogFound = true
@@ -2971,6 +2970,9 @@ const createDescObj = (input, changelogIndx) => {
   try {
     const endIndx = changelogIndx.end + 1 === input.length ? changelogIndx.end + 1 : changelogIndx.end
     const desc = input.slice(changelogIndx.start, endIndx)
+    console.log('desc: ' + desc)
+    console.log('changelogIndx.start ' + changelogIndx.start + " changelogIndx.end" + changelogIndx.end)
+
     checkRequiredFields(desc)
     return parseDescObj(desc)
   } catch(error) {
@@ -2994,11 +2996,9 @@ try {
     }
     let descs = []
     const inputLength = input.length;
-    console.log('inputLength ' + inputLength)
     
     // while (changelogIndx.start < inputLength || changelogIndx.end === -1) {
       changelogIndx = getChangelogIndx(input, changelogIndx)
-      console.log('changelogIndx.start ' + changelogIndx.start + " changelogIndx.end" + changelogIndx.end)
       descObj = createDescObj(input, changelogIndx)
       descs.push(descObj)
       changelogIndx.start = changelogIndx.end + 1
