@@ -1,3 +1,5 @@
+const core = require('@actions/core')
+
 const noChangelog = `# Changelog
 
 - skipped`
@@ -175,6 +177,6 @@ try {
     core.setOutput('result', 'true')
 } catch (error) {
     console.log(error.message)
-    //core.setOutput('result', 'false')
+    core.setOutput('result', 'false')
     core.setFailed(error.message)
 }
