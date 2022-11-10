@@ -169,12 +169,12 @@ try {
     let descs = []
     const inputLength = input.length;
     
-    while (changelogIndx.start < inputLength) {
+    //while (changelogIndx.start < inputLength) {
       changelogIndx = getChangelogIndx(input, changelogIndx)
       //descObj = createDescObj(input, changelogIndx)
       //descs.push(descObj)
-      changelogIndx.start = changelogIndx.end + 1
-    }
+      //changelogIndx.start = changelogIndx.end + 1
+    //}
 
     if (updateChangelog) {
       updateChangelogFile(descs)
