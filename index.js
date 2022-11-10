@@ -172,9 +172,9 @@ try {
     if (updateChangelog) {
       updateChangelog(descs)
     }
-    core.setOutput('result', true)
+    core.setOutput('result', 'true')
 } catch (error) {
     console.log(error.message)
-    core.setOutput('result', false)
+    core.setOutput('result', 'false')
     core.setFailed(error.message)
 }

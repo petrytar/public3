@@ -10,7 +10,6 @@ inputs:
 outputs:
   result:
     description: 'Description format is'
-    required: true
 runs:
   using: 'node16'
   main: 'dist/index.js'
