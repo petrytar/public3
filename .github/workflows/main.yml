@@ -26,7 +26,7 @@ jobs:
         uses: ./ # Uses an action in the root directory
         id: check_desc
         with:
-          input: ${{steps.set_var.outputs.input}}
+          input: `git log`
           update-changelog: false
       - name: Get the result
         run: echo "Description format is ${{ steps.check_desc.outputs.result }}"
