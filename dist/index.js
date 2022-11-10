@@ -2913,6 +2913,7 @@ const getChangelogIndx = (input, changelogIndx) => {
   let changelogFound = false
   for (let i = changelogIndx.start; i < input.length; i++) {
     const line = input[i].trim()
+    console.log(line)
     if (line === CHANGELOG_TAG) {
       changelogIndx.start = i
       changelogFound = true
