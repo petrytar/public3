@@ -161,7 +161,7 @@ try {
     const updateChangelog = core.getInput('update-changelog')
 
     input = cleanUpInput(input)
-    console.log('Receive' + input)
+    console.log('Receive ' + input)
     let changelogIndx = {
       start: 0,
       end: 0
@@ -171,8 +171,8 @@ try {
     
     while (changelogIndx.start < inputLength) {
       changelogIndx = getChangelogIndx(input, changelogIndx)
-      descObj = createDescObj(input, changelogIndx)
-      descs.push(descObj)
+      //descObj = createDescObj(input, changelogIndx)
+      //descs.push(descObj)
       changelogIndx.start = changelogIndx.end + 1
     }
 
