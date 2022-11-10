@@ -2993,7 +2993,7 @@ try {
     let descs = []
     const inputLength = input.length;
     
-    while (changelogIndx.start < inputLength || changelogIndx.end !== -1) {
+    while (changelogIndx.start < inputLength && changelogIndx.end !== -1) {
       changelogIndx = getChangelogIndx(input, changelogIndx)
       console.log(changelogIndx.start + " " + changelogIndx.end)
       descObj = createDescObj(input, changelogIndx)
