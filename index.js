@@ -176,13 +176,13 @@ try {
     const inputLength = input.length;
     console.log('inputLength ' + inputLength)
     
-    while (changelogIndx.start < inputLength || changelogIndx.end === -1) {
+    // while (changelogIndx.start < inputLength || changelogIndx.end === -1) {
       changelogIndx = getChangelogIndx(input, changelogIndx)
       descObj = createDescObj(input, changelogIndx)
       descs.push(descObj)
       changelogIndx.start = changelogIndx.end + 1
       console.log('changelogIndx.start ' + changelogIndx.start + " changelogIndx.end" + changelogIndx.end)
-    }
+    // }
 
     if (updateChangelog) {
       updateChangelogFile(descs)
