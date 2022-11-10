@@ -93,22 +93,27 @@ function checkRequiredFields(desc) {
 const getChangelogIndx = (input, changelogIndx) => {
   let changelogFound = false
   for (let i = changelogIndx.start; i < input.length; i++) {
-    console.log(input[i])
-    if (input[i] === CHANGELOG_TAG) {
+    const line = input[i].trim()
+    if (line === CHANGELOG_TAG) {
       changelogIndx.start = i
       changelogFound = true
       i++
     }
     if (changelogFound) {
-      if ((!input[i].startsWith(COMPONENT_TAG)
-        && !input[i].startsWith(HEADING_TAG_PREFIX)
-        && !input[i].startsWith(ELEMENT_TAG_PREFIX))
+      if ((!line.startsWith(COMPONENT_TAG)
+        && !line.startsWith(HEADING_TAG_PREFIX)
+        && !line.startsWith(ELEMENT_TAG_PREFIX))
             || i + 1 === input.length) {
           changelogIndx.end = i
           break
         }
     }
   }
+
+  if (!changelogFound) {
+    changelogIndx.end = -1
+  }
+
   return changelogIndx
 }
 
@@ -171,14 +176,13 @@ try {
     const inputLength = input.length;
     console.log('inputLength ' + inputLength)
     
-    //while (changelogIndx.start < inputLength) {
+    while (changelogIndx.start < inputLength || changelogIndx.end === -1) {
       changelogIndx = getChangelogIndx(input, changelogIndx)
-      //descObj = createDescObj(input, changelogIndx)
-      //descs.push(descObj)
-      //changelogIndx.start = changelogIndx.end + 1
+      descObj = createDescObj(input, changelogIndx)
+      descs.push(descObj)
+      changelogIndx.start = changelogIndx.end + 1
       console.log('changelogIndx.start ' + changelogIndx.start + " changelogIndx.end" + changelogIndx.end)
-
-    //}
+    }
 
     if (updateChangelog) {
       updateChangelogFile(descs)
