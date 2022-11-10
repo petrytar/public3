@@ -20,6 +20,7 @@ jobs:
 #          echo "::set-output name=input::$desc"
         run: |
            log=`git log`
+           echo ${log}
            echo "::set-output name=input::${log}"
       - name: Check description
         uses: ./ # Uses an action in the root directory
