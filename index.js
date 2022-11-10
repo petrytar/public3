@@ -98,7 +98,7 @@ const getChangelogIndx = (input, changelogIndx) => {
     if (line === CHANGELOG_TAG) {
       changelogIndx.start = i
       changelogFound = true
-      i++
+      continue
     }
     if (changelogFound) {
       if ((!line.startsWith(COMPONENT_TAG)
