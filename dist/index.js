@@ -2980,6 +2980,7 @@ try {
     const updateChangelog = core.getInput('update-changelog')
 
     input = cleanUpInput(input)
+    console.log('Receive' + input)
     let changelogIndx = {
       start: 0,
       end: 0
