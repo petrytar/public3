@@ -10,6 +10,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Set input
+        id: set_input
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.number }}
@@ -28,7 +29,7 @@ jobs:
         uses: ./ # Uses an action in the root directory
         id: check_desc
         with:
-          input: ${{steps.outputs.input}}
+          input: ${{steps.set_input.outputs.input}}
           update-changelog: false
       - name: Get the result
         run: echo "Description format is ${{ steps.check_desc.outputs.result }}"
