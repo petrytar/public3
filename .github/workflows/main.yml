@@ -19,8 +19,9 @@ jobs:
 #            /repos/petrytar/public2/pulls/${PR_NUMBER}`
 #          echo "::set-output name=input::$desc"
         run: |
-           echo ${log}
-           echo "input=${log}" >> $GITHUB_OUTPUT
+          log=`git log`
+          echo ${log}
+          echo "input=${log}" >> $GITHUB_OUTPUT
       - name: Check description
         uses: ./ # Uses an action in the root directory
         id: check_desc
