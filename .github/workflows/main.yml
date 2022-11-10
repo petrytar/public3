@@ -21,8 +21,8 @@ jobs:
         run: |
           log=`git log`
           echo ${log}
-          echo "text<<EOF" >> $GITHUB_OUTPUT
-          echo "input='${log}'" >> $GITHUB_OUTPUT
+          echo "input<<EOF" >> $GITHUB_OUTPUT
+          echo "$log" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
       - name: Check description
         uses: ./ # Uses an action in the root directory
