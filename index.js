@@ -175,7 +175,7 @@ try {
       //descObj = createDescObj(input, changelogIndx)
       //descs.push(descObj)
       //changelogIndx.start = changelogIndx.end + 1
-      console.log('changelogIndx ' + changelogIndx)
+      console.log('changelogIndx.start ' + changelogIndx.start + " changelogIndx.end" + changelogIndx.end)
 
     //}
 
