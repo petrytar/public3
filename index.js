@@ -179,6 +179,7 @@ try {
     
     // while (changelogIndx.start < inputLength || changelogIndx.end === -1) {
       changelogIndx = getChangelogIndx(input, changelogIndx)
+      console.log('changelogIndx.start ' + changelogIndx.start + " changelogIndx.end" + changelogIndx.end)
       descObj = createDescObj(input, changelogIndx)
       descs.push(descObj)
       changelogIndx.start = changelogIndx.end + 1
