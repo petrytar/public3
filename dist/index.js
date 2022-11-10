@@ -2986,7 +2986,6 @@ try {
     const updateChangelog = core.getInput('update-changelog')
 
     input = cleanUpInput(input)
-    console.log('Received ' + input)
     let changelogIndx = {
       start: 0,
       end: 0
@@ -2994,13 +2993,12 @@ try {
     let descs = []
     const inputLength = input.length;
     
-    // while (changelogIndx.start < inputLength || changelogIndx.end === -1) {
+    while (changelogIndx.start < inputLength || changelogIndx.end === -1) {
       changelogIndx = getChangelogIndx(input, changelogIndx)
       descObj = createDescObj(input, changelogIndx)
       descs.push(descObj)
       changelogIndx.start = changelogIndx.end + 1
-      console.log('changelogIndx.start ' + changelogIndx.start + " changelogIndx.end" + changelogIndx.end)
-    // }
+    }
 
     if (updateChangelog) {
       updateChangelogFile(descs)

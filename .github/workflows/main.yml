@@ -21,7 +21,6 @@ jobs:
 #          echo "::set-output name=input::$desc"
         run: |
           log=`git log`
-          echo ${log}
           echo "input<<EOF" >> $GITHUB_OUTPUT
           echo "$log" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
