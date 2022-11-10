@@ -2912,6 +2912,7 @@ function checkRequiredFields(desc) {
 const getChangelogIndx = (input, changelogIndx) => {
   let changelogFound = false
   for (let i = changelogIndx.start; i < input.length; i++) {
+    console.log(input[i])
     if (input[i] === CHANGELOG_TAG) {
       changelogIndx.start = i
       changelogFound = true
