@@ -51,7 +51,7 @@ const cleanUpInput = input => {
 
     for(let i = 0; i < len; i++) {
         if (inputByLines[i].replace(/\s/g, '').length) {
-            inputByLines.push(inputByLines[i])
+            inputByLines.push(inputByLines[i].trim())
         }
     }
     inputByLines.splice(0 , len)
@@ -59,8 +59,6 @@ const cleanUpInput = input => {
 }
 
 function checkRequiredFields(desc) {
-    console.log('desc: ' + desc)
-
     if (desc[0] !== CHANGELOG_TAG) {
         throw new Error('Missing changelog. Please see changelog doc in README.')
     }
@@ -95,7 +93,7 @@ function checkRequiredFields(desc) {
 const getChangelogIndx = (input, changelogIndx) => {
   let changelogFound = false
   for (let i = changelogIndx.start; i < input.length; i++) {
-    const line = input[i].trim()
+    const line = input[i]
     if (line === CHANGELOG_TAG) {
       changelogIndx.start = i
       changelogFound = true
